@@ -13,7 +13,7 @@ env:
   DESIRED_UV_VERSION: 0.6.4
 
 jobs:
-  compile_document:
+  ci_run:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install uv
-        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/astral-sh/uv/releases/download/{{ env.DESIRED_UV_VERSION }}/uv-installer.sh | sh
+        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/astral-sh/uv/releases/download/$DESIRED_UV_VERSION/uv-installer.sh | sh
 
       - name: Format check
         run: uv run poe format_check
