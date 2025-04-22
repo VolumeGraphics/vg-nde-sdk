@@ -1,0 +1,49 @@
+[flake8]
+# completely skip the following folders:
+exclude =
+       .venv
+       __pycache__
+       scripts
+       reports
+       build
+       dist
+
+# (ANN) Type Annotations
+# (B, B9) Bugbear
+# (BLK) Black
+# (C) McCabe Complexity
+# (D) Docstrings
+# (DAR) darglint
+# (E, W) pycodestyle
+# (F) pyflakes
+# (I) import order
+# (S) Security/Bandit
+select = ANN,B,B9,BLK,C,D,DAR,E,F,I,S,W
+
+application-import-names = vg_nde_sdk,tests
+
+max-complexity = 10
+max-line-length = 100
+import-order-style = google
+docstring-convention = google
+
+#darglint settings
+strictness=short
+
+# Bandit should allow assert in tests
+per-file-ignores =
+    # S607, S603, S404 Make use of subprocess module possible in scripts
+    scripts/*:S607,S603,S404
+    src/scripts/*:S607,S603,S404
+
+    # D103 - missing docstrings are OK for tests
+    # S101 - use of assert in tests is OK
+    tests/*:D103,S101,B011
+
+    # F401 - Stop Flake8 complaining about "imported but unused"
+    __init__.py:F401
+
+# E501 (line limit exceed) is handled by bugbear with 10% tolerance margin
+# E203, W503 do not play well with black
+# ANN201, ANN204 are covered by darglint
+ignore = E501,E203,W503,ANN101,ANN204,ANN201,I202,I101,I100
