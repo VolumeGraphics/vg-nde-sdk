@@ -20,7 +20,7 @@ jobs:
 
       - name: Determine version
         id: version
-        run: echo "version=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+        run: echo "version=${{  github.ref_name }}" >> $GITHUB_OUTPUT
 
       - name: Create release draft
         uses: softprops/action-gh-release@v1
