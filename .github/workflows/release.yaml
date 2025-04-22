@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   
 env:
-  BUNDLE_NAME: sources.zip
+  PACKAGE_NAME: sources.zip
 
 jobs:
   create_release_draft:
