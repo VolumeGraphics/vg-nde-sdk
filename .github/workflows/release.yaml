@@ -5,9 +5,6 @@ on:
   push:
     tags:
       - '*'
-  
-env:
-  PACKAGE_NAME: sources.zip
 
 jobs:
   create_release_draft:
@@ -16,9 +13,6 @@ jobs:
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
-
-      - name: Bundle package
-        run: zip -r ${{ env.PACKAGE_NAME }} . -x ".git/*" ".github/*"
 
       - name: Determine version
         id: version
@@ -32,5 +26,3 @@ jobs:
           draft: true
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          files:
-            ${{ env.PACKAGE_NAME }}
