@@ -2,7 +2,9 @@
 name: Release
 
 on:
-  workflow_dispatch:
+  push:
+    tags:
+      - '*'
   
 env:
   PACKAGE_NAME: sources.zip
