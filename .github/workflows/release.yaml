@@ -31,4 +31,4 @@ jobs:
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
           files:
-            ${{ env.PACKAGE_NAME }}.zip
+            ${{ env.PACKAGE_NAME }}s
