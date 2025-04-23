@@ -29,4 +29,3 @@ jobs:
           draft: true
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          generate_release_notes: true
