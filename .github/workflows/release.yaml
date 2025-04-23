@@ -14,15 +14,21 @@ jobs:
       - name: Checkout sources
         uses: actions/checkout@v4
 
-      - name: Determine version
-        id: version
-        run: echo "version=${{  github.ref_name }}" >> $GITHUB_OUTPUT
+      - name: Define version (CalVer: YYYY.MM.DD)
+        id: define_version
+        run: echo "version=$(date +\"%Y.%m.%d\")" >> $GITHUB_OUTPUT
+
+      - name: Create tag
+        run: |
+          git tag ${{ steps.define_version.outputs.version }} HEAD
+          git push origin ${{ steps.define_version.outputs.version }}
 
       - name: Create release draft
         uses: softprops/action-gh-release@v1
         with:
-          tag_name: ${{ steps.version.outputs.version }}
-          name: ${{ steps.version.outputs.version }}
+          tag_name: ${{ steps.define_version.outputs.version }}
+          name: ${{ steps.define_version.outputs.version }}
           draft: true
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
+          generate_release_notes: true
