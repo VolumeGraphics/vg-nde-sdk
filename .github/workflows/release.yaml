@@ -14,7 +14,7 @@ jobs:
 
       - name: Define version (CalVer YYYY.MM.DD)
         id: define_version
-        run: echo "version=$(date +\"%Y.%m.%d\")" >> $GITHUB_OUTPUT
+        run: echo "version=$(date +%Y.%m.%d)" >> $GITHUB_OUTPUT
 
       - name: Create tag
         run: |
@@ -29,4 +29,4 @@ jobs:
           draft: true
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
-          body: "TODO: Add some information for this release"
+          generate_release_notes: true
