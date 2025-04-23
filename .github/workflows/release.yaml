@@ -29,3 +29,4 @@ jobs:
           draft: true
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
+          body: "TODO: Add some information for this release"
