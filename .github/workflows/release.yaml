@@ -4,6 +4,9 @@ name: Release
 on:
   workflow_dispatch:
 
+env:
+  DESIRED_UV_VERSION: 0.6.4
+
 jobs:
   create_release_draft:
     name: Create release draft
