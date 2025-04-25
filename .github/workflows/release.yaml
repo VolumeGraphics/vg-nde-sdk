@@ -6,11 +6,18 @@ on:
 
 jobs:
   create_release_draft:
+    name: Create release draft
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout sources
         uses: actions/checkout@v4
+
+      - name: Install uv
+        run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/astral-sh/uv/releases/download/$DESIRED_UV_VERSION/uv-installer.sh | sh
+
+      - name: Build distributions
+        run: uv build
 
       - name: Define version (CalVer YYYY.MM.DD)
         id: define_version
@@ -30,3 +37,4 @@ jobs:
           prerelease: false
           token: ${{ secrets.GITHUB_TOKEN }}
           generate_release_notes: true
+          files: dist/
