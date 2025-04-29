@@ -22,6 +22,15 @@ jobs:
       - name: Build distributions
         run: uv build
 
+      - name: Generate documentation
+        uses: ammaraskar/sphinx-action@master
+        with:
+          docs-folder: "docs/"
+          build-command: "sphinx-build -M html . _build"
+
+      - name: Bundle documentation
+        run: zip -r vg-nde-sdk-docs.zip _build/html
+
       - name: Define version (CalVer YYYY.MM.DD)
         id: define_version
         run: echo "version=$(date +%Y.%m.%d)" >> $GITHUB_OUTPUT
