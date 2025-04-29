@@ -29,7 +29,9 @@ jobs:
           build-command: "sphinx-build -M html . _build"
 
       - name: Bundle documentation
-        run: zip -r vg-nde-sdk-docs.zip docs/_build/*
+        run: |
+          cd docs/_build && 
+          zip -r ../../vg-nde-sdk-docs.zip .
 
       - name: Define version (CalVer YYYY.MM.DD)
         id: define_version
