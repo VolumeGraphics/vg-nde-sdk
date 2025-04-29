@@ -31,7 +31,7 @@ jobs:
       - name: Bundle documentation
         run: |
           cd docs/_build && 
-          zip -r ../../vg-nde-sdk-docs.zip .
+          zip -r ../../vg-nde-sdk-docs.zip . -x "doctrees/*"
 
       - name: Define version (CalVer YYYY.MM.DD)
         id: define_version
