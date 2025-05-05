@@ -2,6 +2,7 @@ examples/manual_setup/manual_setup.xvgi
 examples/meshes/engine_mesh.xvgi
 examples/volumes/engine_block.xvgi
 examples/volumes/engine_slices.xvgi
+examples/reconstructions/vgreco.xvgi
 
 # IDE Settings
 .vscode

@@ -12,14 +12,19 @@ def main():
     project_desc = sdk.make_reconstruction_project_from_projections(
         volume_name="Reconstructed part",
         distance_source_object=434.07,
-        distance_object_detector=1320,
-        calibration_bright_file=Path("data/reco_dummy_bright_file.raw"),
+        distance_object_detector=885.93,
+        horizontal_detector_offset=-0.8,
+        preprocessing_mode=sdk.sections.ReconstructionPreprocessingMode.CalibrateAndFilter,
+        calibration_mode=sdk.sections.ReconstructionCalibrationMode.OnlyBright,
+        calibration_bright_file=Path(THIS_DIR / "data/bright.raw"),
         projection_file_number_of_pixels=sdk.Vector2i(128, 128),
-        projection_file_physical_size=sdk.Vector2f(400, 400),
-        reconstruction_base_filename="output/reco",
-        roi_min=sdk.Vector3i(0, 0, 0),
-        roi_max=sdk.Vector3i(128, 128, 128),
-        projections=sorted(Path("data/reco_dummy").glob("*.raw")),
+        projection_file_physical_size=sdk.Vector2f(409.6, 409.6),
+        result_number_of_voxels=sdk.Vector3i(256, 256, 256),
+        projection_file_endian=sdk.sections.ReconstructionProjectionFileEndian.Little,
+        projection_file_format=sdk.sections.ReconstructionProjectionFileFormat.Raw,
+        projection_file_data_type=sdk.sections.ReconstructionProjectionDataType.UInt16,
+        reconstruction_base_filename="./[vg-data] vgreco/reconstructed",
+        projections=sorted(Path(THIS_DIR / "data").glob("*.raw")),
     )
 
     writer = sdk.xvgi.XVGIWriter()

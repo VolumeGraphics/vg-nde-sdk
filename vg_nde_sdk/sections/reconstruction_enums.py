@@ -83,6 +83,10 @@ class ReconstructionPreprocessingMode(Enum):
 class ReconstructionProjectionSorting(Enum):
     """Defines order in which the projection data files will be read and reconstructed."""
 
+    def __str__(self):
+        """Provide custom string for format compatibility."""
+        return str("ReconstructionSorting." + self.value)
+
     NumbersUp = "NumbersUp"
     """
     The data files will be sorted according to increasing numbers in the file
@@ -139,6 +143,10 @@ class ReconstructionProjectionDataType(Enum):
 class ReconstructionProjectionOrientation(Enum):
     """Defines if the y and z axes of the projections will be swapped."""
 
+    def __str__(self):
+        """Provide custom string for format compatibility."""
+        return str("ReconstructionOrientation." + self.value)
+
     YZ = "YZ"
     """ Axes will not be swapped. """
 
@@ -148,6 +156,10 @@ class ReconstructionProjectionOrientation(Enum):
 
 class ReconstructionProjectionFileFormat(Enum):
     """Defines the format of the data files."""
+
+    def __str__(self):
+        """Provide custom string for format compatibility."""
+        return str("ReconstructionFileFormat." + self.value)
 
     Raw = "Raw"
     """ Signed/unsigned 8/16/32 bit integer, 32 bit float or 32 bit RGBA. """
@@ -174,6 +186,10 @@ class ReconstructionProjectionFileFormat(Enum):
 class ReconstructionProjectionFileEndian(Enum):
     """Defines the byte order (endianness) of the data type elements of the files."""
 
+    def __str__(self):
+        """Provide custom string for format compatibility."""
+        return str("ReconstructionEndian." + self.value)
+
     Little = "Little"
     """
     The memory location with the lowest address contains the least significant
@@ -189,6 +205,10 @@ class ReconstructionProjectionFileEndian(Enum):
 
 class ReconstructionProjectionSmoothingMode(Enum):
     """Applies a Gaussian filter mask on each projection slice."""
+
+    def __str__(self):
+        """Provide custom string for format compatibility."""
+        return str("ReconstructionSmoothingMode." + self.value)
 
     Off = "Off"
     """ No projection smoothing is done. """
