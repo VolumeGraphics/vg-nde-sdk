@@ -81,7 +81,7 @@ def main():
     )
 
     writer = xvgi.XVGIWriter()
-    with open(targetXVGIFilepath, "w+") as output:
+    with open(targetXVGIFilepath, "wt+", encoding="utf-8") as output:
         writer.dump(project, output)
     print(f"Successfully wrote {targetXVGIFilepath}")
 
