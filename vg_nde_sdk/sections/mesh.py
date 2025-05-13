@@ -1,10 +1,18 @@
 """Volume descriptor."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
+from .component import ComponentInfoSection
 from .mesh_enums import MeshFormat, MeshUnit
 from .types import Vector3f
+
+
+@dataclass
+class MeshMetaInfoContainer:
+    """Container holding volume meta info."""
+
+    ComponentInfo: ComponentInfoSection = field(default_factory=ComponentInfoSection)
 
 
 @dataclass
@@ -78,4 +86,16 @@ class MeshSection:
     Names are used to find appropriate objects during macro playback. If you
     plan on using your created projects in automation scenarios, it is advised
     to stick with the default names.
+    """
+
+    MetaInfo: MeshMetaInfoContainer = field(default_factory=MeshMetaInfoContainer)
+    """
+    Sets the meta information of the mesh.
+
+    Mesh objects can have associated component meta information, like a serial
+    number or production date time. This meta information can be used in various ways
+    in VG software, for example in reports.
+
+    :Hint:
+    Optional. If you do not set anything here, the meta information will be empty.
     """

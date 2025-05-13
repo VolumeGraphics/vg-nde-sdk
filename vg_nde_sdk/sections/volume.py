@@ -145,8 +145,7 @@ class VolumeSection:
     in VG software, for example in reports.
 
     :Hint:
-    Optional. If you do not set anything here, the meta information that was
-    defined at the project level will be used.
+    Optional. If you do not set anything here, the meta information will be empty.
     """
 
     VolumeRotation: Vector3f = Vector3f(0, 0, 0)
