@@ -1,6 +1,7 @@
 """Volume project generation."""
 
-import os  # noqa: E402
+import os
+import shutil
 from pathlib import Path
 
 from vg_nde_sdk.projects import VolumeProjectDescription
@@ -23,13 +24,21 @@ from vg_nde_sdk.serializers import xvgi
 THIS_DIR = Path(__file__).parent
 
 
-def main():  # noqa: D103
-    volumePath = Path(
-        os.path.dirname(os.path.abspath(__file__)) + "\\..\\volumes\\data\\engine.gz"
+def main():
+    """Generate a volume import project in the current directory."""
+    targetXVGIFilepath = THIS_DIR / "manual_setup.xvgi"
+    targetVGDataFolderPath = THIS_DIR / "[vg-data] manual_setup"
+
+    targetVGDataFolderPath.mkdir(exist_ok=True)
+
+    volumeFilePath = targetVGDataFolderPath / "engine.gz"
+    shutil.copy(
+        os.path.dirname(os.path.abspath(__file__)) + "\\..\\volumes\\data\\engine.gz",
+        volumeFilePath,
     )
 
     block_section = VolumeFileSection(
-        FileName=volumePath,
+        FileName=volumeFilePath,
         FileFileFormat=VolumeFileFormat.Gzip,
         FileEndian=VolumeEndian.Little,
         FileSize=Vector3i(256, 256, 110),
@@ -71,12 +80,10 @@ def main():  # noqa: D103
         ),
     )
 
-    targetFilepath = THIS_DIR / "manual_setup.xvgi"
-
     writer = xvgi.XVGIWriter()
-    with open(targetFilepath, "w+") as output:
+    with open(targetXVGIFilepath, "w+") as output:
         writer.dump(project, output)
-    print(f"Successfully wrote {targetFilepath}")
+    print(f"Successfully wrote {targetXVGIFilepath}")
 
 
 if __name__ == "__main__":
