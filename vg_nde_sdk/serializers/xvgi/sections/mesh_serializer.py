@@ -1,9 +1,12 @@
 """Mesh serializers."""
 
 from dataclasses import dataclass, field
-from typing import Mapping
+from typing import Mapping, cast
+
+from vg_nde_sdk.sections.mesh import MeshMetaInfoContainer
 
 from .base import SectionSerializerBase
+from .component_serializer import ComponentInfoSectionSerializer
 
 
 @dataclass
@@ -20,4 +23,15 @@ class MeshSectionSerializer(SectionSerializerBase):
         """Serialize the provided section."""
         section_data = dict(section_data)
 
-        return super().serialize(section_name, section_data)
+        result = super().serialize(section_name, section_data)
+
+        metaData = cast(
+            MeshMetaInfoContainer,
+            section_data.pop("MetaInfo", MeshMetaInfoContainer()),
+        )
+
+        result += ComponentInfoSectionSerializer().serialize(
+            f"{section_name}_ComponentInfoSection", vars(metaData.ComponentInfo)
+        )
+
+        return result
