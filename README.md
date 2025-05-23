@@ -60,7 +60,7 @@ It is only used for the initial import of the data, and can be discarded. It is 
 of the .xvgi file when saving, as is proposed by the software. This helps maintaining the association with referenced
 data.
 
-> myVGL can not open .xvgi files. A licenses application needs to be used to turn the .xvgi file into a .vgl file, which
+> myVGL can not open .xvgi files. A licensed application needs to be used to turn the .xvgi file into a .vgl file, which
 > can then be viewed in myVGL in the usual way.
 
 
