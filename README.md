@@ -7,6 +7,7 @@ Three kinds of data can be described by .xvgi files:
  * Volume data
  * Mesh data
  * Projection data for reconstruction.
+
 One or more objects of each data type can be described, and different data types can also be mixed, e.g. to import
 a volume object and a mesh object into the same project.
 
