@@ -1,12 +1,14 @@
 # Introduction
-The VG NDE SDK contains python interfaces to write the .xvgi file format, to enable the easy import of supported
-data into VG software. It is also possible to add pre-defined or custom meta information for the imported objects,
-for use in reporting or data exports, e.g. when connecting to Q-DAS products.
+The VG NDE SDK contains python interfaces to write the .xvgi file format. XVGI is a simple text format that enables the
+easy import of supported data into VG software. It is also possible to add pre-defined or custom meta information for
+the imported objects, for use in reporting or data exports, e.g. when connecting to Q-DAS products.
 ![Image](docs/images/data_types.png)
-Three kinds of data can be descibed via .xvgi files:
+Three kinds of data can be described by .xvgi files:
  * Volume data
  * Mesh data
  * Projection data for reconstruction.
+One or more objects of each data type can be described, and different data types can also be mixed, e.g. to import
+a volume object and a mesh object into the same project.
 
 > Oftentimes .vgl projects can already be created by the software of the acquisition system. In these cases there
 > is no benefit to using the VG NDE SDK. 
@@ -29,21 +31,20 @@ the docs folder like so:
 
 > The `examples` folder contains examples of how to create files referencing volume or mesh data, or projections for 
 > reconstruction.
-
  
 # Referenced data
 
 .xvgi files reference the data that is to be imported via absolute file paths. These file paths must be accessible to
 the application loading the .xvgi file, making it dependent on the original location of the data. If the
 referenced data is intended to be moved or copied together with the .xvgi file (and the .vgl file eventually created 
-from it), the **[vg-data] folder** must be used.
+from it), a **[vg-data] folder** must be used.
 
 # [vg-data] folder
 
-Data that is referenced by the file **test.xvgi** can be stored in the matching **[vg-data] test** folder. Any file paths
-that point into a [vg-data] folder using the same name as the .xvgi file will be automatically adjusted to point into
-the [vg-data] folder next to the .xvgi file when it is loaded. Organizing and referencing data this way ensures that
-.xvgi files and their associated [vg-data] folder can be moved and copied around easily.
+Data that is referenced by the file **test.xvgi** can be stored in the matching **[vg-data] test** folder. Any file
+paths that point into a [vg-data] folder using the same name as an .xvgi file will be automatically adjusted to point
+into the [vg-data] folder next to the .xvgi file when it is loaded. Organizing and referencing data this way ensures
+that .xvgi files and their associated [vg-data] folder can be moved and copied around easily.
 
 ![Image](docs/images/folder_and_file.png)
 

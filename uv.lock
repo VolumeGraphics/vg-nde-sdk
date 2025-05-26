@@ -1302,7 +1302,7 @@ wheels = [
 
 [[package]]
 name = "vg-nde-sdk"
-version = "1.0.0"
+version = "2025.5.26"
 source = { editable = "." }
 
 [package.dev-dependencies]
