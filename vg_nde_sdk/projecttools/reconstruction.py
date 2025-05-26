@@ -1,9 +1,9 @@
 """Reconstruction project description."""
 
-from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Optional, Sequence
 
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.sections import (
     ReconstructionCalibrationMode,
     ReconstructionClampType,
@@ -18,18 +18,7 @@ from vg_nde_sdk.sections import (
     Vector2f,
     Vector2i,
     Vector3i,
-    VersionSection,
 )
-
-
-@dataclass
-class ReconstructionProjectDescription:
-    """Reconstruction project description."""
-
-    version: VersionSection = field(default_factory=VersionSection)
-    reconstructions: ReconstructionSectionHolder = field(
-        default_factory=ReconstructionSectionHolder
-    )
 
 
 def make_reconstruction_project_from_projections(
@@ -55,14 +44,14 @@ def make_reconstruction_project_from_projections(
     clamp_low_mode: bool = False,
     clamp_low_type: ReconstructionClampType = ReconstructionClampType.AbsoluteClamping,
     clamp_low_value: float = 0,
-) -> ReconstructionProjectDescription:
+) -> ProjectDescription:
     """Create a reconstruction project out of projections."""
     angle_step = (reconstruction_angular_section - reconstruction_angular_offset) / len(
         projections
     )
     angles = (x * angle_step for x in range(len(projections)))
 
-    return ReconstructionProjectDescription(
+    return ProjectDescription(
         reconstructions=ReconstructionSectionHolder(
             [
                 ReconstructionSection(

@@ -1,13 +1,9 @@
 """XVGI format serializer."""
 
 from dataclasses import dataclass, field
-from typing import Callable, Mapping, TextIO, Union
+from typing import Callable, Mapping, TextIO
 
-from vg_nde_sdk.projects import (
-    MeshProjectDescription,
-    ReconstructionProjectDescription,
-    VolumeProjectDescription,
-)
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.serializers.xvgi import (
     MeshHolderSerializer,
     ReconstructionHolderSerializer,
@@ -29,14 +25,7 @@ class XVGIWriter:
     )
     """ Maps sections to their according serializer class """
 
-    def dumps(
-        self,
-        project_description: Union[
-            MeshProjectDescription,
-            ReconstructionProjectDescription,
-            VolumeProjectDescription,
-        ],
-    ) -> str:
+    def dumps(self, project_description: ProjectDescription) -> str:
         """Write out the XVGI serialization."""
         result = ""
 
@@ -52,11 +41,7 @@ class XVGIWriter:
 
     def dump(
         self,
-        project_description: Union[
-            ReconstructionProjectDescription,
-            MeshProjectDescription,
-            VolumeProjectDescription,
-        ],
+        project_description: ProjectDescription,
         file: TextIO,
     ):
         """Write out the XVGI serialization into a provided file."""

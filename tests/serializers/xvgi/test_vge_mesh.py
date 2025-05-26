@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from vg_nde_sdk.projects import MeshProjectDescription
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.sections import (
     MeshFormat,
     MeshSection,
@@ -16,8 +16,8 @@ from vg_nde_sdk.serializers.xvgi import XVGIWriter
 
 
 @pytest.fixture()
-def mesh_project_description(tmpdir: Path) -> MeshProjectDescription:
-    return MeshProjectDescription(
+def mesh_project_description(tmpdir: Path) -> ProjectDescription:
+    return ProjectDescription(
         meshes=MeshSectionHolder(
             [
                 MeshSection(FileName=Path("data/vgcube/cubeMesh.stl")),
@@ -41,7 +41,7 @@ def mesh_project_description(tmpdir: Path) -> MeshProjectDescription:
 
 
 def test_serialize_mesh_project(
-    mesh_project_description: MeshProjectDescription, tmpdir: Path
+    mesh_project_description: ProjectDescription, tmpdir: Path
 ):
     # GIVEN a mesh and a serializer
     writer = XVGIWriter()
@@ -54,7 +54,7 @@ def test_serialize_mesh_project(
 
 
 def test_serialize_mesh_project_to_file(
-    mesh_project_description: MeshProjectDescription, tmpdir: Path
+    mesh_project_description: ProjectDescription, tmpdir: Path
 ):
     # GIVEN a mesh and a serializer
     output_dir = Path(tmpdir, "output")

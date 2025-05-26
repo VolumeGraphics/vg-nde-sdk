@@ -4,7 +4,7 @@ import os
 import shutil
 from pathlib import Path
 
-from vg_nde_sdk.projects import VolumeProjectDescription
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.sections import (
     ComponentInfoSection,
     ManufacturerInfoSection,
@@ -67,7 +67,7 @@ def main():
         ),
     )
 
-    project = VolumeProjectDescription(
+    project = ProjectDescription(
         volumes=VolumeSectionHolder(
             [
                 VolumeSection(
