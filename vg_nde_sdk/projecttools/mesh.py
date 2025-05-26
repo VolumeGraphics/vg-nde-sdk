@@ -1,8 +1,8 @@
 """Volume project description."""
 
-from dataclasses import dataclass, field
 from pathlib import Path
 
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.sections import (
     ComponentInfoSection,
     MeshFormat,
@@ -10,17 +10,8 @@ from vg_nde_sdk.sections import (
     MeshSectionHolder,
     MeshUnit,
     Vector3f,
-    VersionSection,
 )
 from vg_nde_sdk.sections.mesh import MeshMetaInfoContainer
-
-
-@dataclass
-class MeshProjectDescription:
-    """Volume project description."""
-
-    version: VersionSection = field(default_factory=VersionSection)
-    meshes: MeshSectionHolder = field(default_factory=MeshSectionHolder)
 
 
 def make_mesh_project(
@@ -30,11 +21,11 @@ def make_mesh_project(
     mesh_info: ComponentInfoSection,
     mesh_translation: Vector3f = Vector3f(0, 0, 0),  # noqa: B008
     mesh_rotation: Vector3f = Vector3f(0, 0, 0),  # noqa: B008
-) -> MeshProjectDescription:
+) -> ProjectDescription:
     """Generate minimal volume project description for a slice stack."""
     meta_infos = MeshMetaInfoContainer(ComponentInfo=mesh_info)
 
-    project = MeshProjectDescription(
+    project = ProjectDescription(
         meshes=MeshSectionHolder(
             [
                 MeshSection(

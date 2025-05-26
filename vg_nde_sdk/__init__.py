@@ -1,8 +1,7 @@
 """Project generation SDK."""
 
-from .projects import (
-    ReconstructionProjectDescription,
-    VolumeProjectDescription,
+from .projects import ProjectDescription
+from .projecttools import (
     make_mesh_project,
     make_reconstruction_project_from_projections,
     make_volume_project_from_block,

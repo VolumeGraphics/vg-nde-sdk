@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from vg_nde_sdk.projects import VolumeProjectDescription
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.sections import (
     ComponentInfoSection,
     ManufacturerInfoSection,
@@ -19,8 +19,8 @@ from vg_nde_sdk.serializers.xvgi import XVGIWriter
 
 
 @pytest.fixture()
-def volume_project_description(tmpdir: Path) -> VolumeProjectDescription:
-    project = VolumeProjectDescription(
+def volume_project_description(tmpdir: Path) -> ProjectDescription:
+    project = ProjectDescription(
         volumes=VolumeSectionHolder(
             [
                 VolumeSection(
@@ -81,7 +81,7 @@ def volume_project_description(tmpdir: Path) -> VolumeProjectDescription:
 
 
 def test_serialize_volume_project(
-    volume_project_description: VolumeProjectDescription, tmpdir: Path
+    volume_project_description: ProjectDescription, tmpdir: Path
 ):
     # GIVEN a volume and a serializer
     writer = XVGIWriter()
@@ -94,7 +94,7 @@ def test_serialize_volume_project(
 
 
 def test_serialize_volume_project_to_file(
-    volume_project_description: VolumeProjectDescription, tmpdir: Path
+    volume_project_description: ProjectDescription, tmpdir: Path
 ):
     # GIVEN a volume and a serializer
     output_dir = Path(tmpdir, "output")

@@ -45,6 +45,8 @@ that point into a [vg-data] folder using the same name as the .xvgi file will be
 the [vg-data] folder next to the .xvgi file when it is loaded. Organizing and referencing data this way ensures that
 .xvgi files and their associated [vg-data] folder can be moved and copied around easily.
 
+![Image](docs/images/folder_and_file.png)
+
 # Using .xvgi files
 VG software products starting from 2025.1 version are able to load these files, and support their use in
  * Open
@@ -62,9 +64,6 @@ data.
 
 > myVGL can not open .xvgi files. A licensed application needs to be used to turn the .xvgi file into a .vgl file, which
 > can then be viewed in myVGL in the usual way.
-
-
-![Image](docs/images/folder_and_file.png)
 
 # Requirements
 

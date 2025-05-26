@@ -1,14 +1,13 @@
 """Volume project description."""
 
-from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Sequence
 
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.sections import (
     Vector2i,
     Vector3f,
     Vector3i,
-    VersionSection,
     VolumeDataType,
     VolumeEndian,
     VolumeFileFormat,
@@ -18,14 +17,6 @@ from vg_nde_sdk.sections import (
 )
 
 
-@dataclass
-class VolumeProjectDescription:
-    """Volume project description."""
-
-    version: VersionSection = field(default_factory=VersionSection)
-    volumes: VolumeSectionHolder = field(default_factory=VolumeSectionHolder)
-
-
 def make_volume_project_from_slices(
     slice_size: Vector2i,
     slices: Sequence[Path],
@@ -33,7 +24,7 @@ def make_volume_project_from_slices(
     volume_resolution: Vector3f,
     file_data_type: VolumeDataType,
     file_data_endian: VolumeEndian = VolumeEndian.Little,
-) -> VolumeProjectDescription:
+) -> ProjectDescription:
     """Generate minimal volume project description for a slice stack."""
     slice_sections = [
         VolumeFileSection(
@@ -46,7 +37,7 @@ def make_volume_project_from_slices(
         for s in slices
     ]
 
-    project = VolumeProjectDescription(
+    project = ProjectDescription(
         volumes=VolumeSectionHolder(
             [
                 VolumeSection(
@@ -67,7 +58,7 @@ def make_volume_project_from_block(
     volume_resolution: Vector3f,
     file_data_type: VolumeDataType,
     file_data_endian: VolumeEndian = VolumeEndian.Little,
-) -> VolumeProjectDescription:
+) -> ProjectDescription:
     """Generate minimal volume project description for a single block file."""
     block_section = VolumeFileSection(
         FileName=block,
@@ -77,7 +68,7 @@ def make_volume_project_from_block(
         FileDataType=file_data_type,
     )
 
-    project = VolumeProjectDescription(
+    project = ProjectDescription(
         volumes=VolumeSectionHolder(
             [
                 VolumeSection(

@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from vg_nde_sdk.projects import ReconstructionProjectDescription
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.sections import (
     ComponentInfoSection,
     ManufacturerInfoSection,
@@ -57,8 +57,8 @@ from vg_nde_sdk.serializers.xvgi import XVGIWriter
 @pytest.fixture()
 def reconstruction_project_description(
     tmpdir: Path,
-) -> ReconstructionProjectDescription:
-    project = ReconstructionProjectDescription(
+) -> ProjectDescription:
+    project = ProjectDescription(
         reconstructions=ReconstructionSectionHolder(
             reconstructions=[
                 ReconstructionSection(
@@ -240,7 +240,7 @@ def reconstruction_project_description(
 
 
 def test_serialize_reconstruction_project(
-    reconstruction_project_description: ReconstructionProjectDescription, tmpdir: Path
+    reconstruction_project_description: ProjectDescription, tmpdir: Path
 ):
     # GIVEN a project and a serializer
     writer = XVGIWriter()
@@ -253,7 +253,7 @@ def test_serialize_reconstruction_project(
 
 
 def test_serialize_reconstruction_project_to_file(
-    reconstruction_project_description: ReconstructionProjectDescription, tmpdir: Path
+    reconstruction_project_description: ProjectDescription, tmpdir: Path
 ):
     # GIVEN a project and a serializer
     output_dir = Path(tmpdir, "output")

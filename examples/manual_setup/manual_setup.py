@@ -4,10 +4,14 @@ import os
 import shutil
 from pathlib import Path
 
-from vg_nde_sdk.projects import VolumeProjectDescription
+from vg_nde_sdk.projects import ProjectDescription
 from vg_nde_sdk.sections import (
     ComponentInfoSection,
     ManufacturerInfoSection,
+    MeshFormat,
+    MeshSection,
+    MeshSectionHolder,
+    MeshUnit,
     ScanInfoSection,
     Vector3f,
     Vector3i,
@@ -19,6 +23,7 @@ from vg_nde_sdk.sections import (
     VolumeSection,
     VolumeSectionHolder,
 )
+from vg_nde_sdk.sections.mesh import MeshMetaInfoContainer
 from vg_nde_sdk.serializers import xvgi
 
 THIS_DIR = Path(__file__).parent
@@ -35,6 +40,12 @@ def main():
     shutil.copy(
         os.path.dirname(os.path.abspath(__file__)) + "\\..\\volumes\\data\\engine.gz",
         volumeFilePath,
+    )
+
+    meshFilePath = targetVGDataFolderPath / "engine.stl"
+    shutil.copy(
+        os.path.dirname(os.path.abspath(__file__)) + "\\..\\meshes\\data\\engine.stl",
+        meshFilePath,
     )
 
     block_section = VolumeFileSection(
@@ -67,7 +78,7 @@ def main():
         ),
     )
 
-    project = VolumeProjectDescription(
+    project = ProjectDescription(
         volumes=VolumeSectionHolder(
             [
                 VolumeSection(
@@ -75,6 +86,16 @@ def main():
                     VolumeResolution=Vector3f(1, 1, 1),
                     VolumeProjections=[block_section],
                     VolumeMetaInfo=meta_infos,
+                )
+            ]
+        ),
+        meshes=MeshSectionHolder(
+            [
+                MeshSection(
+                    FileName=meshFilePath,
+                    MeshFormat=MeshFormat.STL,
+                    MeshUnit=MeshUnit.Millimeter,
+                    MetaInfo=MeshMetaInfoContainer(),
                 )
             ]
         ),
