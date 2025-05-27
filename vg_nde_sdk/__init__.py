@@ -32,4 +32,4 @@ from .sections import (
 )
 from .serializers import xvgi
 
-__version__ = "2025.5.26"
+__version__ = "2025.5.27"
