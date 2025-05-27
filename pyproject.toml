@@ -1,6 +1,6 @@
 [project]
 name = "vg_nde_sdk"
-version = "2025.5.26"
+version = "2025.5.27"
 description = "VG NDE SDK"
 license = {text = "All Rights Reserved"}
 readme = "README.md"
